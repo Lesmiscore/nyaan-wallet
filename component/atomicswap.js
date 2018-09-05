@@ -23,6 +23,9 @@ const bip39 = require("@missmonacoin/bip39-eng")
 const BigNumber = require('bignumber.js');
 const coinUtil = require("../js/coinUtil")
 const qrcode = require("qrcode")
+const {
+  firstResolve
+} = require("../js/promise");
 
 const getPriv = (coinId, change, index, password) => storage.get("keyPairs").then((cipher) => {
   const cur = currencyList.get(coinId)
@@ -563,9 +566,19 @@ module.exports = require("../js/lang.js")({
     getSecret() {
       const cur = currencyList.get(this.giveCoinId)
       cur.getAddressProp("", this.myP2SH.address)
-        .then(f => f.transactions.length && cur.getTx(f.transactions[0]))
-        .then(res => {
-          this.secret = cur.lib.script.decompile(Buffer.from(res.vin[0].scriptSig.hex, "hex"))[2].toString("utf8")
+        .then(f => {
+          if (f.transactions.length) {
+            return firstResolve(f.transactions.map(tx =>
+              cur.getTx(tx).then(res =>
+                cur.lib.script.decompile(Buffer.from(res.vin[0].scriptSig.hex, "hex"))[2].toString("utf8")
+              )
+            ));
+          } else {
+            return Promise.reject();
+          }
+        })
+        .then(data => {
+          this.secret = data
         })
         .catch(() => {
           this.secretNotFound = true
