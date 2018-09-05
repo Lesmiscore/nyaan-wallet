@@ -102,9 +102,6 @@ module.exports=require("../js/lang.js")({ja:require("./ja/home.html"),en:require
     history(){
       this.$emit("push",require("./history.js"))
     },
-    monaparty(){
-      this.$emit("push",require("./monaparty.js"))
-    },
     openExt(extId){
       this.$emit("push",ext.get(extId).component)
     }

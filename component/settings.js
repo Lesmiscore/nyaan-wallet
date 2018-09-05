@@ -30,17 +30,8 @@ module.exports=lang({ja:require("./ja/settings.html"),en:require("./en/settings.
         useEasyUnit:false,
         absoluteTime:false,
         fiat:"jpy",
-        monappy:{
-          enabled:false,
-          myUserId:""
-        },
-        monaparty:{
-          enabled:true,
-          bgClass:"sand"
-        },
         enabledExts:[]
       },
-      monapartyTitleList:currencyList.monapartyTitle,
       lang:"ja",
       extensions:[]
     }

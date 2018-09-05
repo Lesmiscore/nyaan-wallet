@@ -66,9 +66,6 @@ module.exports=require("../js/lang.js")({ja:require("./ja/navigator.html"),en:re
     help(){
       this.openSide=false;this.pageStack.push(require("./help.js"))
     },
-    monaparty(){
-      this.openSide=false;this.pageStack.push(require("./monaparty.js"))
-    },
     openExt(extId){
       this.openSide=false;this.pageStack.push(ext.get(extId).component)
     }
