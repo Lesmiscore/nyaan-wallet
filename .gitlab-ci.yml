@@ -11,8 +11,8 @@ main:
   script:
     - npm i
     - npm run build
-    - cd docs/wallet/
   after_script:
+    - cd docs/wallet/
     - git init
     - git config user.email "nao20010128@gmail.com"
     - git config user.name "nao20010128nao"
