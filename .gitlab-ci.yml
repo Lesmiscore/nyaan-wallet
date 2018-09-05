@@ -12,7 +12,10 @@ main:
     - npm i
     - npm run build
     - cd docs/wallet/
+  after_script:
     - git init
+    - git config user.email "nao20010128@gmail.com"
+    - git config user.name "nao20010128nao"
     - git checkout --orphan gh-pages
     - git add .
     - git commit -m 'Commit'
