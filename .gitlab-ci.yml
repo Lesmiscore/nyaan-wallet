@@ -6,15 +6,12 @@ stages:
 main:
   stage: main
   before_script:
-    - apt-get update
-    - apt-get install -y git
-  script:
+    - "( apt-get update; apt-get install -y git ) &"
     - npm i
     - npm run build
     - "[ -e docs/wallet/dist ] || npm run build"
     - "[ -e docs/wallet/dist ] || npm run build"
     - "[ -e docs/wallet/dist ]"
-  after_script:
     - cd docs/wallet/
     - git init
     - git config user.email "nao20010128@gmail.com"
