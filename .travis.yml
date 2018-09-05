@@ -3,7 +3,6 @@ node_js:
 - stable
 before_script:
 - npm run build
-- wget -O docs/wallet/index.html https://github.com/monya-wallet/monya-wallet.github.io/raw/master/wallet/index.html
 deploy:
   local_dir: docs/wallet/
   provider: pages
