@@ -13,6 +13,7 @@ main:
     - "[ -e docs/wallet/dist ] || npm run build"
     - "[ -e docs/wallet/dist ]"
     - cd docs/wallet/
+    - sed -i s%/dist\.js%/dist.js?dummy=$CI_COMMIT_SHA% index.html
     - git init
     - git config user.email "nao20010128@gmail.com"
     - git config user.name "nao20010128nao"
