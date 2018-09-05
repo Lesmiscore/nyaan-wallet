@@ -58,44 +58,7 @@ exports.getAddrVersion=(addr)=>{
   }
 };
 exports.usdPrice = 0;
-exports.getPrice=(cryptoId,fiatId)=>{
-  // if user selected Nyaan, return 0 immediately
-  if(fiatId === "nyaan") return Promise.resolve(0)
-  let currencyPath = []
-  let prevId =cryptoId;//reverse seek is not implemented
-  while(prevId!==fiatId){
-    if(prevId==="jpy"&&fiatId==="mona"){
-      currencyPath.push(currencyList.get("mona").getPrice().then(r=>r?1/r:1))
-      prevId="mona"
-      continue
-    }
-    if(prevId==="jpy"&&fiatId==="usd"){
-      currencyPath.push(
-        exports.usdPrice
-          ?Promise.resolve(exports.usdPrice)
-          :axios.get(
-            exports.proxyUrl("https://www.gaitameonline.com/rateaj/getrate"))
-          .then(r=>{
-            return (exports.usdPrice=1/parseFloat(r.data.quotes[20].ask))
-          }))
-      prevId="usd"
-      continue
-    }
-    const cur = currencyList.get(prevId)
-    if(!cur.price){
-      return Promise.resolve(0)
-    }
-    currencyPath.push(cur.getPrice())
-    prevId=cur.price.fiat
-  }
-  return Promise.all(currencyPath).then(v=>{
-    let price=1
-    v.forEach(p=>{
-      price*=p
-    })
-    return price
-  })
-}
+exports.getPrice=async (cryptoId,fiatId)=>0;
 exports.encrypt=(plain,password)=>{
   const cipher = crypto.createCipher('aes256', password);
   return cipher.update(plain, 'utf8', 'hex')+cipher.final('hex');

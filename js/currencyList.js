@@ -61,12 +61,6 @@ const defaultCoins = [{
   },
   sound: require("../res/coins/paySound/mona.m4a"),
   enableSegwit: false,
-  price: {
-    url: "https://public.bitbank.cc/mona_jpy/ticker",
-    json: true,
-    jsonPath: '$.data.last',
-    fiat: "jpy"
-  },
   confirmations: 6,
   counterparty:{
     endpoints: ["https://wallet.monaparty.me/_api"],
@@ -114,12 +108,6 @@ const defaultCoins = [{
     wif: 128,bech32:"sz"
   },
   enableSegwit: false,
-  price: {
-    url: "https://api.crypto-bridge.org/api/v1/ticker",
-    json: true,
-    jsonPath: '$[?(@.id=="ZNY_BTC")].last',
-    fiat: "btc"
-  },
   sound: require("../res/coins/paySound/zny.m4a"),
   opReturnLength: 40, //server seems currently not to support
   isAtomicSwapAvailable: true
@@ -176,12 +164,6 @@ const defaultCoins = [{
     wif: 128
   },
   enableSegwit: false,
-  price: {
-    url: "https://public.bitbank.cc/btc_jpy/ticker",
-    json: true,
-    jsonPath: '$.data.last',
-    fiat: "jpy"
-  },
   confirmations: 6,
   counterparty:{endpoints: ["https://wallet.counterwallet.io/_api"],nativeSymbol:"XCP"},
   opReturnLength: 83,
@@ -224,12 +206,6 @@ const defaultCoins = [{
     bech32: "ltc"
   },
   enableSegwit: false,
-  price: {
-    url: "https://public.bitbank.cc/ltc_btc/ticker",
-    json: true,
-    jsonPath: '$.data.last',
-    fiat: "btc"
-  },
   confirmations: 6,
   opReturnLength: 83,
   isAtomicSwapAvailable: true
@@ -261,12 +237,6 @@ const defaultCoins = [{
     wif: 164
   },
   enableSegwit: false,
-  price: {
-    url: "https://min-api.cryptocompare.com/data/price?fsym=FJC&tsyms=JPY",
-    json: true,
-    jsonPath: '$.JPY',
-    fiat: "jpy"
-  },
   confirmations: 6,
   opReturnLength: 83,
   isAtomicSwapAvailable: true
@@ -323,12 +293,6 @@ const defaultCoins = [{
     wif: 128
   },
   enableSegwit: "legacy",
-  price: {
-    url: "https://public.bitbank.cc/btc_jpy/ticker",
-    json: true,
-    jsonPath: '$.data.last',
-    fiat: "jpy"
-  },
   confirmations: 6,
   counterparty:{endpoints: ["https://wallet.counterwallet.io/_api"],nativeSymbol:"XCP"},
   opReturnLength: 83,
@@ -371,12 +335,6 @@ const defaultCoins = [{
   },
   enableSegwit: false,
   lib: "bch",
-  price: {
-    url: "https://public.bitbank.cc/bcc_jpy/ticker",
-    json: true,
-    jsonPath: '$.data.last',
-    fiat: "jpy"
-  },
   confirmations: 6,
   opReturnLength: 83, // change after hard fork,
   isAtomicSwapAvailable: true
@@ -403,12 +361,6 @@ const defaultCoins = [{
     "txversion": 3,
     "versionGroupId": 48748912,
     "wif": 128
-  },
-  price: {
-    url: "https://zaif-status.herokuapp.com/priceEtherProxy/koto",
-    json: true,
-    jsonPath: 'result',
-    fiat: "btc"
   },
   "enableSegwit": false,
   "confirmations": 6,
@@ -571,12 +523,6 @@ const defaultCoins = [{
   },
   enableSegwit: false,
   lib: "blk",
-  price: {
-    url: "https://api.crypto-bridge.org/api/v1/ticker",
-    json: true,
-    jsonPath: '$[?(@.id=="NEET_BTC")].last',
-    fiat: "btc"
-  },
   opReturnLength: 0,
   isAtomicSwapAvailable: false
 }
