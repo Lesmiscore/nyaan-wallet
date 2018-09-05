@@ -17,19 +17,9 @@
 */
 const storage = require("./storage.js")
 
-const extensions = {}
+exports.get = extId => void 0;
 
-exports.get = extId => {
-  return extensions[extId]
-}
-
-exports.each = (fn) => {
-  for (let extName in extensions) {
-    if (extensions[extName] && extensions[extName].id) {
-      fn(extensions[extName])
-    }
-  }
-}
+exports.each = (fn) => {}
 
 exports.extStorage = (extId) => ({
   set: (key, data) => storage.get("extData").then(d => {
