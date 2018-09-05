@@ -16,7 +16,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 const storage=require("../js/storage")
-const monappyApi=require("../js/monappyApi")
 const currencyList = require("../js/currencyList")
 const lang = require("../js/lang.js")
 const ext = require("../js/extension.js")
@@ -31,7 +30,6 @@ module.exports=lang({ja:require("./ja/settings.html"),en:require("./en/settings.
         useEasyUnit:false,
         absoluteTime:false,
         fiat:"jpy",
-        paySound:false,
         monappy:{
           enabled:false,
           myUserId:""
@@ -77,18 +75,6 @@ module.exports=lang({ja:require("./ja/settings.html"),en:require("./en/settings.
         storage.set("settings",this.d)
         this.$store.commit("setSettings",this.d)
       })
-    },
-    changeMonappy(){
-      this.save()
-      if (this.d.monappy.myUserId) {
-        monappyApi.getAddress(this.d.monappy.myUserId).then(r=>{
-          this.monappyNotExist=!r
-        }).catch(r=>{
-          this.monappyNotExist=true
-        })
-      }else{
-        this.monappyNotExist=false
-      }
     },
     changeLang(){
       storage.changeLang(this.lang)

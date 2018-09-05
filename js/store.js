@@ -27,8 +27,6 @@ module.exports = new Vuex.Store({
     showLabelPayload:{},
     tsMode:"relative",
     detail:{},
-    monappyEnabled:false,
-    monapartyEnabled:true,
     enabledExts:[],
     sendUrl:"",
     zaifPayInvoiceId:"",

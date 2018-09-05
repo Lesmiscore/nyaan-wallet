@@ -39,17 +39,11 @@ module.exports=require("../js/lang.js")({ja:require("./ja/invoice.html"),en:requ
       fiat:0,
       price:0,
       fiatTicker:this.$store.state.fiat,
-      requestMonappy:false,
 
-
-      monappyEnabled:false,
-      monappyDestination:"",
       orderDlg:false,
-
 
       orders:[],
       onOrder:[],
-      monappyNotExist:false,
 
       isAddrUrl:false
     }
@@ -90,17 +84,6 @@ module.exports=require("../js/lang.js")({ja:require("./ja/invoice.html"),en:requ
         this.price=res
       })
     },
-    changeMonappy(){
-      this.generateQR()
-      this.monappyNotExist=false
-      if (this.monappyDestination) {
-        monappyApi.getAddress(this.monappyDestination).then(r=>{
-          this.monappyNotExist=!r
-        }).catch(r=>{
-          this.monappyNotExist=true
-        })
-      }
-    },
     share(event){
       const targetRect = event.target.getBoundingClientRect(),
             targetBounds = targetRect.left + ',' + targetRect.top + ',' + targetRect.width + ',' + targetRect.height;
@@ -119,9 +102,6 @@ module.exports=require("../js/lang.js")({ja:require("./ja/invoice.html"),en:requ
   },
   computed:{
     url(){
-      if(this.currencyIndex===-1){
-        return "https://monappy.jp/users/send/@"+this.monappyDestination+"?amount="+parseFloat(this.amount)+"&message="+encodeURIComponent(this.message)
-      }
       if(!this.currency[this.currencyIndex]){
         return
       }
