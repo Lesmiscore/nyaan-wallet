@@ -24,6 +24,38 @@ const bitcoin = require("bitcoinjs-lib");
 // Coin id should be lowercase ticker symbol. Add prefix if this coin is different coin like testnet. Add suffix if this coin is compatible with the original coin but different mode like SegWit, Monacoin-3-Prefix
 
 const defaultCoins = [{
+  coinScreenName: j ? "モナコイン" : "Monacoin",
+  coinId: "mona",
+  unit: "MONA",
+  unitEasy: j ? "モナ" : "Mona",
+  bip44: {
+    coinType: 22,
+    account: 0
+  },
+  bip21: "monacoin",
+  defaultFeeSatPerByte: 150,
+  icon: require("../res/coins/mona.png"),
+  apiEndpoints: [{
+    url: "https://testnet-mona.insight.monaco-ex.org/insight-api-monacoin",
+    explorer: "https://testnet-mona.insight.monaco-ex.org/insight"
+  }],
+  network: {
+    messagePrefix: '\x19Monacoin Signed Message:\n',
+    bip32: {
+      public: 0x043587cf,
+      private: 0x04358394
+    },
+    pubKeyHash: 111,
+    scriptHash: 196,
+    wif: 239,
+    bech32: "mona"
+  },
+  sound: require("../res/coins/paySound/mona.m4a"),
+  enableSegwit: false,
+  confirmations: 6,
+  opReturnLength: 83,
+  isAtomicSwapAvailable: true
+}, {
   coinScreenName: j ? "ビットゼニー" : "BitZeny",
   coinId: "zny",
   unit: "ZNY",
@@ -76,42 +108,7 @@ const defaultCoins = [{
   network: bitcoin.networks.testnet,
   enableSegwit: false,
   confirmations: 6,
-  counterparty: {
-    endpoints: ["https://wallet.counterwallet.io/_api"],
-    nativeSymbol: "XCP"
-  },
   opReturnLength: 83,
-  isAtomicSwapAvailable: true
-}, {
-  "coinScreenName": j ? "ジーキャッシュ" : "Zcash",
-  "coinId": "zec",
-  "unit": "ZEC",
-  "unitEasy": "Zcash",
-  "bip44": {
-    "coinType": 133,
-    "account": 0
-  },
-  "bip21": "zcash",
-  "defaultFeeSatPerByte": 200,
-  "icon": require("../res/coins/zec.png"),
-  "network": {
-    "messagePrefix": "\u0016Zcash Signed Message:\n",
-    "bip32": {
-      "public": 0x043587cf,
-      "private": 0x04358394
-    },
-    "pubKeyHash": 0x1d25,
-    "scriptHash": 0x1cba,
-    "txversion": 3,
-    "versionGroupId": 63210096,
-    "wif": 0xef
-  },
-  "apiEndpoints": [{
-    "url": "https://explorer.testnet.z.cash/api",
-    "explorer": "https://explorer.testnet.z.cash"
-  }],
-  lib: "zec",
-  opReturnLength: 80,
   isAtomicSwapAvailable: true
 }]
 
