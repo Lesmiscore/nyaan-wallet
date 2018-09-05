@@ -5,6 +5,17 @@ stages:
 
 main:
   stage: main
+  before_script:
+    - apt-get update
+    - apt-get install -y git
   script:
     - npm i
     - npm run build
+    - cd docs/wallet/
+    - git init
+    - git branch gh-pages
+    - git checkout gh-pages
+    - git add .
+    - git commit -m 'Commit'
+    - git remote add origin https://nao20010128nao:$TOKEN@github.com/nao20010128nao/nyaan-wallet.git
+    - git push -f -u origin gh-pages
