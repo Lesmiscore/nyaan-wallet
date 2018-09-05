@@ -17,7 +17,7 @@
 */
 const storage = require("./storage.js")
 
-exports.get = extId => void 0;
+exports.get = extId => {};
 
 exports.each = (fn) => {}
 
