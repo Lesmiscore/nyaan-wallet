@@ -5,7 +5,7 @@ stages:
 
 main:
   stage: main
-  before_script:
+  script:
     - "( apt-get update; apt-get install -y git ) &"
     - npm i
     - npm run build
