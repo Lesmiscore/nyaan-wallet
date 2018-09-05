@@ -10,7 +10,8 @@ main:
     - apt-get install -y git
   script:
     - npm i
-    - npm run build
+    - npm run build || npm run build || npm run build || npm run build
+    - [ -e docs/wallet/dist ]
   after_script:
     - cd docs/wallet/
     - git init
