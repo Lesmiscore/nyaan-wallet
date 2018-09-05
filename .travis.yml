@@ -1,8 +1,8 @@
 language: node_js
 node_js:
 - stable
-before_script:
-- npm run build
+script:
+- travis_wait npm run build
 deploy:
   local_dir: docs/wallet/
   provider: pages
