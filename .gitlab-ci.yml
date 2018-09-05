@@ -13,7 +13,7 @@ main:
     - npm run build
     - cd docs/wallet/
     - git init
-    - git checkout gh-pages --orphan
+    - git checkout --orphan gh-pages
     - git add .
     - git commit -m 'Commit'
     - git remote add origin https://nao20010128nao:$TOKEN@github.com/nao20010128nao/nyaan-wallet.git
