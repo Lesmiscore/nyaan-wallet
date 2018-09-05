@@ -90,7 +90,7 @@ module.exports=require("../js/lang.js")({ja:require("./ja/setPassword.html"),en:
           .then(()=>coinUtil.makePairsAndEncrypt({
             entropy:this.$store.state.entropy,
             password:this.password,
-            makeCur:[template["<!--t:primaryCoinId-->"]||"mona"]
+            makeCur:["zny","btc"]
           }))
       }
       cipherPromise.then((data)=>storage.set("keyPairs",data))
