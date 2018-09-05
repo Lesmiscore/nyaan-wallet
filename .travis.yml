@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+- stable
+before_script:
+- npm i
+- npm run build
+- wget -O docs/wallet/index.html https://github.com/monya-wallet/monya-wallet.github.io/raw/master/wallet/index.html
+deploy:
+  local_dir: docs/wallet/
+  provider: pages
+  github-token: "$GITHUB_TOKEN"
+  keep-history: true
+  on:
+    branch: master
+env:
+  global:
+    secure: x6ZYLbKWyysQ2R1+4MVrYCMf9VxD7WOBFyjQDzmFtlrrzxZHvuX93KBva4McC91lEPSv6gbV8K7CyHttMYxryoOivsavGhd5kp+RTTl9f3kFDPz7U111tQGjQrCmcuLFVU/EPzbpNorLvJcSJR2DguMkjAUOgP/kCsiCrgS/16OGUC0chG3R+cmYraKynmJoKXoSCKAc/BQ+Yib0HmQN4qC1gSnaR78vaFS2g/Mot030XLIfyCSyBuOU474nAYNhNhMdavY886bjN4o01MaRzIW/lBAcZWjNg4C2ignDpZFTe9uCrojn0j+npgtxTyYjR9SFPQXPVCrE6cDx/MLCYhA2GnpyBDQpVACdnNS2aXn/X0weUCZJSUd7dDsMJmRcIZLwkuqTD89jz+GSpRGZx3C+ws0Jmc0obromYM55R68b18iAbrYP4xRNjnwVW6iSQDMtY530IzIzXzyUEqk/ab2vioLHjbjtJ6N1cYO2UfNvMOAEfCVKfG4aQCCcL6HNFBYj4AyepvTbRFO9V3UA8e8gw3J4hY9Cd5yz21CkGXlbgZDZVFikJi3ZiAi6UmDzkf52U5se//DdFZmL7QNDIJAWAVN29aCiukpD3jw/cq+ZCZeKfCZ4ODPVBKTmqtlhqL39YoWxWKHMY05PRybtJXNqloiK1UxodpP95ABhW8o=

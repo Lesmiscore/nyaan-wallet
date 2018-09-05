@@ -7,7 +7,7 @@ npm-debug.log*
 cordovaProj/www/dist
 docs/wallet/dist
 !.circleci
-.*
+!.travis.yml
 component/ja
 component/en
 cordovaProj/node_modules
