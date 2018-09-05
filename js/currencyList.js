@@ -46,7 +46,7 @@ const defaultCoins = [{
       private: 0x04358394
     },
     pubKeyHash: 111,
-    scriptHash: 196,
+    scriptHash: 117,
     wif: 239,
     bech32: "mona"
   },
