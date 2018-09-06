@@ -17,18 +17,16 @@
 */
 
 const Currency = require("./currency");
-const coinUtil = require("./coinUtil");
-const j = require("./lang").getLang() === "ja";
 const bitcoin = require("bitcoinjs-lib");
 
 // Coin id should be lowercase ticker symbol. Add prefix if this coin is different coin like testnet. Add suffix if this coin is compatible with the original coin but different mode like SegWit, Monacoin-3-Prefix
 
 const defaultCoins = [
   {
-    coinScreenName: j ? "モナコイン" : "Monacoin",
+    coinScreenName: "Monacoin (Testnet)",
     coinId: "mona",
     unit: "MONA",
-    unitEasy: j ? "モナ" : "Mona",
+    unitEasy: "Mona",
     bip44: {
       coinType: 22,
       account: 0
@@ -60,10 +58,10 @@ const defaultCoins = [
     isAtomicSwapAvailable: true
   },
   {
-    coinScreenName: j ? "ビットゼニー" : "BitZeny",
+    coinScreenName: "BitZeny (Testnet)",
     coinId: "zny",
     unit: "ZNY",
-    unitEasy: j ? "ゼニー" : "Zeny",
+    unitEasy: "Zeny",
     bip44: {
       coinType: 123,
       account: 0
@@ -94,10 +92,10 @@ const defaultCoins = [
     isAtomicSwapAvailable: true
   },
   {
-    coinScreenName: j ? "ビットコイン" : "Bitcoin",
+    coinScreenName: "Bitcoin (Testnet)",
     coinId: "btc",
     unit: "BTC",
-    unitEasy: j ? "ビットコイン" : "Bitcoin",
+    unitEasy: "Bitcoin",
     bip44: {
       coinType: 0,
       account: 0
