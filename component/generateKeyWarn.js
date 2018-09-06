@@ -15,17 +15,22 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-module.exports=require("../js/lang.js")({ja:require("./ja/generateKeyWarn.html"),en:require("./en/generateKeyWarn.html")})({
-  data(){
+module.exports = require("../js/lang.js")({
+  ja: require("./ja/generateKeyWarn.html"),
+  en: require("./en/generateKeyWarn.html")
+})({
+  data() {
     return {
-      check1:false,check2:false,check3:false,
-      entropySize:16
-    }
+      check1: false,
+      check2: false,
+      check3: false,
+      entropySize: 16
+    };
   },
-  methods:{
-    next(){
-      this.$store.commit("setEntropySize",this.entropySize)
-      this.$emit("push",require("./generateKey.js"))
+  methods: {
+    next() {
+      this.$store.commit("setEntropySize", this.entropySize);
+      this.$emit("push", require("./generateKey.js"));
     }
   }
-})
+});

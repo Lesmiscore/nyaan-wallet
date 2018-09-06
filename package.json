@@ -51,9 +51,12 @@
     "gulp-plumber": "^1.1.0",
     "gulp-uglify": "^3.0.0",
     "html-loader": "^0.5.1",
+    "husky": "^0.14.3",
     "jsonpath": "^1.0.0",
+    "lint-staged": "^7.2.2",
     "node-notifier": "^5.1.2",
     "node-sass": "^4.5.3",
+    "prettier": "^1.14.2",
     "run-sequence": "^2.1.0",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
@@ -70,8 +73,16 @@
     "start": "gulp",
     "lint": "eslint ./js/*.js",
     "build": "gulp prod",
-    "build:cordova": "echo 'cordova command is deprecated';gulp prod",
-    "postinstall": "cd ./node_modules/nem-sdk;npm install ajv@6.3.0;cd ../../node_modules/har-validator;npm install ajv@6.3.0"
+    "pp": "prettier --write js/*.js component/*.js",
+    "postinstall": "cd ./node_modules/nem-sdk;npm install ajv@6.3.0;cd ../../node_modules/har-validator;npm install ajv@6.3.0",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "eslint",
+      "git add"
+    ]
   },
   "author": "monya-wallet",
   "license": "GPL-3.0",

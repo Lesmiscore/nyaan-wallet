@@ -15,12 +15,15 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-module.exports = function(o){
-  return o[window.localStorage.lang||
-           (o[navigator.language]?
-            navigator.language:"ja")]
-}
+module.exports = function(o) {
+  return o[
+    window.localStorage.lang ||
+      (o[navigator.language] ? navigator.language : "ja")
+  ];
+};
 
-module.exports.getLang = function(){
-  return (""+(window.localStorage.lang||navigator.language.slice(0,2))).toLowerCase()
-}
+module.exports.getLang = function() {
+  return (
+    "" + (window.localStorage.lang || navigator.language.slice(0, 2))
+  ).toLowerCase();
+};

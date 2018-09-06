@@ -15,20 +15,23 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-module.exports=require("../js/lang.js")({ja:require("./ja/customBar.html"),en:require("./en/customBar.html")})({
-  data(){
-    return {}
+module.exports = require("../js/lang.js")({
+  ja: require("./ja/customBar.html"),
+  en: require("./en/customBar.html")
+})({
+  data() {
+    return {};
   },
-  methods:{
-    menuOpen(){
-      this.$store.commit("openSide",true)
+  methods: {
+    menuOpen() {
+      this.$store.commit("openSide", true);
     }
   },
-  store:require("../js/store.js"),
-  computed:{
-    mod(){
-      return this.modifier
+  store: require("../js/store.js"),
+  computed: {
+    mod() {
+      return this.modifier;
     }
   },
-  props:["title","menu","modifier"]
-})
+  props: ["title", "menu", "modifier"]
+});

@@ -15,35 +15,37 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-const coinUtil = require("../js/coinUtil.js")
-module.exports=require("../js/lang.js")({ja:require("./ja/finished.html"),en:require("./en/finished.html")})({
-  data(){
+const coinUtil = require("../js/coinUtil.js");
+module.exports = require("../js/lang.js")({
+  ja: require("./ja/finished.html"),
+  en: require("./en/finished.html")
+})({
+  data() {
     return {
-      loading:false
-    }
+      loading: false
+    };
   },
-  store:require("../js/store.js"),
-  methods:{
-    start(){
-      this.loading=true
-      coinUtil.shortWait().then(()=>{
-        this.loading=false
-        if(this.$store.state.finishNextPage.page){
-          this.$emit("replace",this.$store.state.finishNextPage.page)
-        }else{
-          this.$emit("pop")
+  store: require("../js/store.js"),
+  methods: {
+    start() {
+      this.loading = true;
+      coinUtil.shortWait().then(() => {
+        this.loading = false;
+        if (this.$store.state.finishNextPage.page) {
+          this.$emit("replace", this.$store.state.finishNextPage.page);
+        } else {
+          this.$emit("pop");
         }
-        this.$store.commit("setFinishNextPage",{infoId:"",payload:{}})
-      })
-      
+        this.$store.commit("setFinishNextPage", { infoId: "", payload: {} });
+      });
     }
   },
-  computed:{
-    infoId(){
-      return this.$store.state.finishNextPage.infoId
+  computed: {
+    infoId() {
+      return this.$store.state.finishNextPage.infoId;
     },
-    payload(){
-      return this.$store.state.finishNextPage.payload
+    payload() {
+      return this.$store.state.finishNextPage.payload;
     }
   }
-})
+});

@@ -15,8 +15,9 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-module.exports=require("../js/lang.js")({ja:require("./ja/monappy.html"),en:require("./en/monappy.html")})({
-  data:()=>({
-    
-  }),
-})
+module.exports = require("../js/lang.js")({
+  ja: require("./ja/monappy.html"),
+  en: require("./en/monappy.html")
+})({
+  data: () => ({})
+});

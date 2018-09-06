@@ -15,30 +15,32 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-const storage = require("./storage.js")
+const storage = require("./storage.js");
 
 exports.get = extId => {};
 
-exports.each = (fn) => {}
+exports.each = fn => {};
 
-exports.extStorage = (extId) => ({
-  set: (key, data) => storage.get("extData").then(d => {
-    if (!d) {
-      d = {}
-    }
-    if (!d[extId]) {
-      d[extId] = {}
-    }
-    d[extId][key] = data
-    storage.set("extData", d)
-  }),
-  get: key => storage.get("extData").then(d => {
-    if (!d) {
-      return null
-    }
-    if (!d[extId]) {
-      return null
-    }
-    return d[extId][key]
-  })
-})
+exports.extStorage = extId => ({
+  set: (key, data) =>
+    storage.get("extData").then(d => {
+      if (!d) {
+        d = {};
+      }
+      if (!d[extId]) {
+        d[extId] = {};
+      }
+      d[extId][key] = data;
+      storage.set("extData", d);
+    }),
+  get: key =>
+    storage.get("extData").then(d => {
+      if (!d) {
+        return null;
+      }
+      if (!d[extId]) {
+        return null;
+      }
+      return d[extId][key];
+    })
+});

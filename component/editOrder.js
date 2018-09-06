@@ -15,39 +15,43 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-const storage = require("../js/storage")
-module.exports=require("../js/lang.js")({ja:require("./ja/editOrder.html"),en:require("./en/editOrder.html")})({
-  data:()=>({
-    orders:[]
+const storage = require("../js/storage");
+module.exports = require("../js/lang.js")({
+  ja: require("./ja/editOrder.html"),
+  en: require("./en/editOrder.html")
+})({
+  data: () => ({
+    orders: []
   }),
-  mounted(){
-    storage.get("orders").then(r=>{
-      this.orders=r||[{
-        name:"",
-        price:0,
-        fiat:"jpy"
-      }]
-    })
+  mounted() {
+    storage.get("orders").then(r => {
+      this.orders = r || [
+        {
+          name: "",
+          price: 0,
+          fiat: "jpy"
+        }
+      ];
+    });
   },
-  methods:{
-    save(){
-      storage.set("orders",this.orders)
+  methods: {
+    save() {
+      storage.set("orders", this.orders);
     },
-    add(){
+    add() {
       this.orders.push({
-        name:"",
-        price:0,
-        fiat:"jpy"
-      })
+        name: "",
+        price: 0,
+        fiat: "jpy"
+      });
     },
-    remove(i){
-
-      this.orders.splice(i,1)
+    remove(i) {
+      this.orders.splice(i, 1);
     }
   },
-  watch:{
-    orders(){
-      this.save()
+  watch: {
+    orders() {
+      this.save();
     }
   }
-})
+});
