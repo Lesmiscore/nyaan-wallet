@@ -28,7 +28,6 @@ module.exports = require("../js/lang.js")({
     return {
       address: "",
       amount: 0,
-      fiat: 0,
       feePerByte: 0,
       message: "",
       balance: 0,
@@ -36,7 +35,6 @@ module.exports = require("../js/lang.js")({
       coinType: "",
       possibility: [],
       cpTokens: [],
-      fiatTicker: this.$store.state.fiat,
       advanced: false,
       label: "",
       messageToShow: "",
@@ -64,30 +62,6 @@ module.exports = require("../js/lang.js")({
         signOnly: this.signOnly
       });
       this.$emit("push", require("./confirm.js"));
-    },
-    getPrice() {
-      coinUtil.getPrice(this.coinType, this.fiatTicker).then(res => {
-        this.price = res;
-        if (this.amount) {
-          this.calcFiat();
-        } else if (this.fiat) {
-          this.calcCur();
-        }
-      });
-    },
-    calcFiat() {
-      this.$nextTick(
-        () =>
-          (this.fiat =
-            Math.ceil(this.amount * this.price * 10000000) / 10000000)
-      );
-    },
-    calcCur() {
-      this.$nextTick(
-        () =>
-          (this.amount =
-            Math.ceil((this.fiat / this.price) * 10000000) / 10000000)
-      );
     },
     qr() {
       this.$emit("push", require("./qrcode.js"));
@@ -172,7 +146,6 @@ module.exports = require("../js/lang.js")({
     },
     coinType() {
       if (this.coinType) {
-        this.getPrice();
         this.feePerByte = currencyList.get(this.coinType).defaultFeeSatPerByte;
       }
     }
