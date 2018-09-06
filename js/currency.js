@@ -208,7 +208,9 @@ module.exports = class {
       );
     } else {
       // manual utxo mode
-      promise = Promise.resolve({ data: addressList });
+      promise = Promise.resolve({
+        data: addressList
+      });
     }
 
     return promise.then(res => {
@@ -417,61 +419,52 @@ module.exports = class {
       }
     });
   }
-  buildTransaction(option) {
+  async buildTransaction(option) {
     if (this.dummy) {
       return null;
     }
     if (!this.hdPubNode) {
       throw new errors.HDNodeNotFoundError();
     }
-    return new Promise((resolve, reject) => {
-      const targets = option.targets;
-      const feeRate = option.feeRate;
+    const targets = option.targets;
+    const feeRate = option.feeRate;
 
-      const txb = new this.lib.TransactionBuilder(this.network);
+    const txb = new this.lib.TransactionBuilder(this.network);
 
-      let param;
-      if (option.utxoStr) {
-        param = JSON.parse(option.utxoStr);
-      } else {
-        param = this.getReceiveAddr().concat(this.getChangeAddr());
+    let param;
+    if (option.utxoStr) {
+      param = JSON.parse(option.utxoStr);
+    } else {
+      param = this.getReceiveAddr().concat(this.getChangeAddr());
+    }
+
+    const res = await this.getUtxos(param, option.includeUnconfirmedFunds);
+    const path = [];
+    const { inputs, outputs, fee } = coinSelect(res.utxos, targets, feeRate);
+    if (!inputs || !outputs) throw new errors.NoSolutionError();
+    inputs.forEach(input => {
+      const vin = txb.addInput(input.txId, input.vout);
+      txb.inputs[vin].value = input.value;
+      path.push(this.getIndexFromAddress(input.address));
+    });
+    outputs.forEach(output => {
+      if (!output.address) {
+        output.address = this.getAddress(
+          1,
+          (this.changeIndex + 1) % coinUtil.GAP_LIMIT_FOR_CHANGE
+        );
       }
 
-      this.getUtxos(param, option.includeUnconfirmedFunds)
-        .then(res => {
-          const path = [];
-          const { inputs, outputs, fee } = coinSelect(
-            res.utxos,
-            targets,
-            feeRate
-          );
-          if (!inputs || !outputs) throw new errors.NoSolutionError();
-          inputs.forEach(input => {
-            const vin = txb.addInput(input.txId, input.vout);
-            txb.inputs[vin].value = input.value;
-            path.push(this.getIndexFromAddress(input.address));
-          });
-          outputs.forEach(output => {
-            if (!output.address) {
-              output.address = this.getAddress(
-                1,
-                (this.changeIndex + 1) % coinUtil.GAP_LIMIT_FOR_CHANGE
-              );
-            }
-
-            txb.addOutput(output.address, output.value);
-          });
-
-          resolve({
-            txBuilder: txb,
-            balance: res.balance,
-            utxos: inputs,
-            path,
-            fee
-          });
-        })
-        .catch(reject);
+      txb.addOutput(output.address, output.value);
     });
+
+    return {
+      txBuilder: txb,
+      balance: res.balance,
+      utxos: inputs,
+      path,
+      fee
+    };
   }
   signTx(option) {
     if (!this.hdPubNode) {
@@ -641,7 +634,9 @@ module.exports = class {
     }
     return axios({
       url: this.apiEndpoint + "/tx/send",
-      data: qs.stringify({ rawtx: hex }),
+      data: qs.stringify({
+        rawtx: hex
+      }),
       method: "POST"
     }).then(res => {
       return res.data;

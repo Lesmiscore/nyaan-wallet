@@ -53,19 +53,7 @@ module.exports = require("../js/lang.js")({
   },
   store: require("../js/store.js"),
   mounted() {
-    [
-      "address",
-      "amount",
-      "fiat",
-      "feePerByte",
-      "message",
-      "coinType",
-      "txLabel",
-      "utxoStr",
-      "signOnly"
-    ].forEach(v => {
-      this[v] = this.$store.state.confPayload[v];
-    });
+    Object.assign(this, this.$store.state.confPayload);
     this.cur = currencyList.get(this.coinType);
     this.$nextTick(this.build);
     currencyList
