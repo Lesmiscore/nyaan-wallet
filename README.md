@@ -1,30 +1,13 @@
-# もにゃ(Monya)
-
-<p style="text-align:center">
-
-
-<a href="https://monya-wallet.github.io"><img src="res/monya_icon_round_512.png" alt="Monya"></a>
-
-<br>
-
-Easy but secure Monacoin & Altcoins Wallet
-
-</p>
+# にゃーん (Nyaan)
+Modified from [Monya](https://monya-wallet.github.io) with Testnet coins
 
 [![GPL License](http://img.shields.io/badge/license-GPL-blue.svg?style=flat)](LICENSE)
-[![CircleCI](https://circleci.com/gh/monya-wallet/monya.svg?style=svg)](https://circleci.com/gh/monya-wallet/monya)
-[![Monappy](https://img.shields.io/badge/DonateMe-monappy-yellow.svg)](https://monappy.jp/users/send/@miss_monacoin?amount=39&message=%E3%82%82%E3%81%AB%E3%82%83%E3%81%AE%E5%AF%84%E4%BB%98%E3%81%A7%E3%81%99)
-[![モナコイン](https://img.shields.io/badge/DonateMe-monacoin-yellow.svg)](https://monya-wallet.github.io/a/?address=MStxnMRVMHH95YPzGeR9pdc3HLrvL6pjSo&scheme=monacoin&message=%E5%AF%84%E4%BB%98%E3%82%92%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A8%E3%81%86%E3%81%94%E3%81%96%E3%81%84%E3%81%BE%E3%81%99&req-opreturn=%E5%AF%84%E4%BB%98%E3%81%A7%E3%81%99)
-[![ビットコイン](https://img.shields.io/badge/DonateMe-bitcoin-orange.svg)](https://monya-wallet.github.io/a/?address=1HohzLWyA7L1ifx6hr2Xr5N1sGZrR1ZbMt&scheme=bitcoin&message=%E5%AF%84%E4%BB%98%E3%82%92%E3%81%82%E3%82%8A%E3%81%8C%E3%81%A8%E3%81%86%E3%81%94%E3%81%96%E3%81%84%E3%81%BE%E3%81%99&req-opreturn=%E5%AF%84%E4%BB%98%E3%81%A7%E3%81%99)
-[![Tipmonaで投げる](https://img.shields.io/badge/TipMe-%40tipmona-ff69b4.svg)](https://twitter.com/share?text=%40tipmona%20tip%20%40monya_wallet%2039%20%E3%82%82%E3%81%AB%E3%82%83%E3%81%AE%E5%AF%84%E4%BB%98%E3%81%A7%E3%81%99)
 
-## Use Monya Now
+[Launch Now](https://nao20010128nao.github.io/nyaan-wallet/)
+
+## Monya
 
 [Official Website](https://monya-wallet.github.io)
-
-[Wallet (Stable)](https://monya-wallet.github.io/wallet)
-
-[Dev Version](https://monya-wallet.github.io/dev)
 
 ## Feature
 
@@ -41,14 +24,8 @@ Easy but secure Monacoin & Altcoins Wallet
   * AES-256 Protection
   * 2-Factor Encryption (On launch and before decrypting private key)
   * QR code reader
-  * Digital Cards powered by Counterparty
-  * Can add coins you like by yourself
-  * Send to @name (powered by Counterparty)
+  * Add coins you like by yourself
   * Highly Extendable
-
-## Origin of the name "Monya"
-Because Kanemitsu Midori, who is CFO of bitFlyer, said Monya
-[https://twitter.com/KanemitsuMidori/status/914803980856827904](https://twitter.com/KanemitsuMidori/status/914803980856827904)
 
 ## Icon 
 
