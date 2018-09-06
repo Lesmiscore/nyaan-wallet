@@ -6,7 +6,7 @@ stages:
 main:
   stage: main
   script:
-    - "( apt-get update; apt-get install -y git ) &"
+    - "( apt-get update; apt-get install -y git sed ) &"
     - npm i
     - npm run build
     - "[ -e docs/wallet/dist ] || npm run build"
