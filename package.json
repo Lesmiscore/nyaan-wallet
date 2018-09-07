@@ -71,7 +71,7 @@
   },
   "scripts": {
     "start": "gulp",
-    "lint": "eslint ./js/*.js",
+    "lint": "eslint js/*.js component/*.js",
     "build": "gulp prod",
     "pp": "prettier --write js/*.js component/*.js",
     "postinstall": "cd ./node_modules/nem-sdk;npm install ajv@6.3.0;cd ../../node_modules/har-validator;npm install ajv@6.3.0",
