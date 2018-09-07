@@ -72,53 +72,53 @@ exports.decrypt = (cipher, password) => {
   }
 };
 
-exports.makePairsAndEncrypt = option =>
-  new Promise((resolve, reject) => {
-    let seed;
-    let entropy;
-    if (option.entropy) {
-      entropy = option.entropy;
-      seed = bip39.mnemonicToSeed(bip39.entropyToMnemonic(option.entropy));
-    } else if (option.mnemonic) {
-      entropy = bip39.mnemonicToEntropy(option.mnemonic);
-      seed = bip39.mnemonicToSeed(option.mnemonic);
-    } else {
-      throw new Error("Can't generate entropy");
-    }
-    if (option.encryptPub) {
-      resolve({ entropy: exports.encrypt(entropy, option.password) });
-    } else {
-      const ret = {
-        entropy: "",
-        pubs: {}
-      };
-      for (let i = 0; i < option.makeCur.length; i++) {
-        let coinId = option.makeCur[i];
-        let pub = currencyList.get(coinId).seedToPubB58(seed);
-        ret.pubs[coinId] = pub;
-      }
-
-      ret.entropy = exports.encrypt(entropy, option.password);
-      resolve(ret);
-    }
-  });
-
-exports.decryptKeys = option =>
-  new Promise((resolve, reject) => {
-    let seed = bip39.mnemonicToSeed(
-      bip39.entropyToMnemonic(
-        exports.decrypt(option.entropyCipher, option.password)
-      )
-    );
-
-    const ret = {};
+exports.makePairsAndEncrypt = async option => {
+  let seed;
+  let entropy;
+  if (option.entropy) {
+    entropy = option.entropy;
+    seed = bip39.mnemonicToSeed(bip39.entropyToMnemonic(option.entropy));
+  } else if (option.mnemonic) {
+    entropy = bip39.mnemonicToEntropy(option.mnemonic);
+    seed = bip39.mnemonicToSeed(option.mnemonic);
+  } else {
+    throw new Error("Can't generate entropy");
+  }
+  if (option.encryptPub) {
+    return {
+      entropy: exports.encrypt(entropy, option.password)
+    };
+  } else {
+    const ret = {
+      entropy: "",
+      pubs: {}
+    };
     for (let i = 0; i < option.makeCur.length; i++) {
       let coinId = option.makeCur[i];
-      const pub = currencyList.get(coinId).seedToPubB58(seed);
-      ret[coinId] = pub;
+      let pub = currencyList.get(coinId).seedToPubB58(seed);
+      ret.pubs[coinId] = pub;
     }
-    resolve(ret);
-  });
+
+    ret.entropy = exports.encrypt(entropy, option.password);
+    return ret;
+  }
+};
+
+exports.decryptKeys = async option => {
+  let seed = bip39.mnemonicToSeed(
+    bip39.entropyToMnemonic(
+      exports.decrypt(option.entropyCipher, option.password)
+    )
+  );
+
+  const ret = {};
+  for (let i = 0; i < option.makeCur.length; i++) {
+    let coinId = option.makeCur[i];
+    const pub = currencyList.get(coinId).seedToPubB58(seed);
+    ret[coinId] = pub;
+  }
+  return ret;
+};
 
 exports.copy = data => {
   if (window.cordova) {
@@ -312,9 +312,7 @@ exports.queueUrl = url => {
     exports._urlCb && exports._urlCb(exports._url);
   }
 };
-exports.getQueuedUrl = () => {
-  return exports._url;
-};
+exports.getQueuedUrl = () => exports._url;
 exports.popQueuedUrl = () => {
   const url = exports._url;
   exports._url = "";
@@ -368,8 +366,5 @@ exports.share = (option, pos) =>
     window.plugins.socialsharing.shareWithOptions(option, resolve, reject);
   });
 
-exports.getNews = () => {
-  return axios
-    .get("https://monya-wallet.github.io/news.json")
-    .then(r => r.data.news);
-};
+exports.getNews = async () =>
+  (await axios.get("https://monya-wallet.github.io/news.json")).data.news;
