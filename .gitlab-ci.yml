@@ -8,6 +8,7 @@ main:
   script:
     - "( apt-get update; apt-get install -y git sed ) &"
     - npm i
+    - npm run lint
     - npm run build
     - "[ -e docs/wallet/dist ] || npm run build"
     - "[ -e docs/wallet/dist ] || npm run build"
