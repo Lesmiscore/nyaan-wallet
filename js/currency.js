@@ -392,32 +392,8 @@ module.exports = class {
     }
     return node.toBase58();
   }
-  getPrice() {
-    return new Promise((resolve, reject) => {
-      if (!this.price) {
-        return resolve(0);
-      }
-
-      if (this.lastPriceTime + 1000 * 60 < Date.now()) {
-        axios({
-          method: this.price.method || "get",
-          url: this.price.url,
-          responseType: this.price.json ? "json" : "text"
-        })
-          .then(res => {
-            let temp = res.data;
-            if (this.price.json) {
-              temp = jp.query(temp, this.price.jsonPath);
-            }
-            this.priceCache = temp;
-            this.lastPriceTime = Date.now();
-            resolve(temp);
-          })
-          .catch(reject);
-      } else {
-        resolve(this.priceCache);
-      }
-    });
+  async getPrice() {
+    return 0;
   }
   async buildTransaction(option) {
     if (this.dummy) {

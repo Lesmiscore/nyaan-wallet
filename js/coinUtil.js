@@ -30,8 +30,8 @@ const addressRegExp = /^\w+:(?:\/\/)?(\w{10,255})\??/;
 const API_PREFIX = "api_v1_";
 
 exports.DEFAULT_LABEL_NAME = "Default";
-exports.GAP_LIMIT = 20;
-exports.GAP_LIMIT_FOR_CHANGE = 20;
+exports.GAP_LIMIT = 100;
+exports.GAP_LIMIT_FOR_CHANGE = 100;
 
 exports.isValidAddress = addr => {
   try {
