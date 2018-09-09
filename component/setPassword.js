@@ -21,10 +21,10 @@ const crypto = require("crypto");
 const storage = require("../js/storage.js");
 const errors = require("../js/errors");
 const template = require("../lang/template.json");
+const zxcvbn = require("zxcvbn");
 
 const ext = require("../js/extension.js");
 
-const blacklist = ["123456", "114514", "password", "password2"];
 module.exports = require("../js/lang.js")({
   ja: require("./ja/setPassword.html"),
   en: require("./en/setPassword.html")
@@ -55,8 +55,13 @@ module.exports = require("../js/lang.js")({
       ) {
         return;
       }
-      if (blacklist.indexOf(this.password) >= 0) {
-        this.$ons.notification.alert(this.password + "は禁止!");
+      const strengthScore = zxcvbn(this.password).guesses_log10;
+      if (strengthScore < 9) {
+        this.$ons.notification.alert(
+          this.password +
+            " is banned. ZXCVBN guesses log10 score: " +
+            strengthScore
+        );
         return;
       }
       this.loading = true;
