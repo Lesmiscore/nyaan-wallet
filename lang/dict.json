@@ -2318,5 +2318,13 @@
   "最大手数料": {
     "ja": "最大手数料",
     "en": "Max Fee"
+  },
+  "Is Coinbase?": {
+    "ja": "コイン生成トランザクションか?",
+    "en": "Is Coinbase?"
+  },
+  "No inputs: This is coinbase transaction!": {
+    "ja": "入力はありません。コイン生成トランザクションじゃないですかこれ！",
+    "en": "No inputs: This is coinbase transaction!"
   }
 }
