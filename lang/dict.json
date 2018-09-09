@@ -2326,5 +2326,13 @@
   "No inputs: This is coinbase transaction!": {
     "ja": "入力はありません。コイン生成トランザクションじゃないですかこれ！",
     "en": "No inputs: This is coinbase transaction!"
+  },
+  "Data": {
+    "ja": "データ",
+    "en": "Data"
+  },
+  "Block Hash": {
+    "ja": "ブロックハッシュ",
+    "en": "Block Hash"
   }
 }
