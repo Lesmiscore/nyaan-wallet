@@ -50,7 +50,7 @@
         </v-ons-list-item>
         <v-ons-list-item modifier="small">
           <div class="center">Is Coinbase?</div>
-          <div class="right"><v-ons-input :value="!!res.isCoinBase" readonly></v-ons-input></div>
+          <div class="right"><v-ons-input :value="res.isCoinBase?'Yes':'No'" readonly></v-ons-input></div>
         </v-ons-list-item>
         <v-ons-list-item modifier="tappable chevron" @click="openTxExplorer">チェーンエクスプローラーを見る</v-ons-list-item>
       </v-ons-list>
